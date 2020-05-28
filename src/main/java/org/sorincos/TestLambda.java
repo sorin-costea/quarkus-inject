@@ -1,19 +1,27 @@
 package org.sorincos;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+
+import java.util.logging.Logger;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 @Named("test")
 public class TestLambda implements RequestHandler<InputObject, OutputObject> {
 
-    @Inject
-    ProcessingService service;
+  private final static Logger LOGGER = Logger.getLogger(TestLambda.class.getName());
 
-    @Override
-    public OutputObject handleRequest(InputObject input, Context context) {
-        return service.process(input).setRequestId(context.getAwsRequestId());
-    }
+  @Inject
+  ProcessingService service;
+
+  @Override
+  public OutputObject handleRequest(InputObject input, Context context) {
+    LOGGER.fine("FINE");
+    LOGGER.info("INFO");
+    LOGGER.warning("WARN");
+    LOGGER.severe("SEV");
+    return service.process(input).setRequestId(context.getAwsRequestId());
+  }
 }
