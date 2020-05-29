@@ -21,7 +21,7 @@ public class TestLambda implements RequestHandler<InputObject, OutputObject> {
     LOGGER.fine("FINE");
     LOGGER.info("INFO");
     LOGGER.warning("WARN");
-    LOGGER.severe("SEV");
+    LOGGER.severe("SEV " + service);
     return service.process(input).setRequestId(context.getAwsRequestId());
   }
 }
