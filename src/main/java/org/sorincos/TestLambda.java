@@ -19,9 +19,9 @@ public class TestLambda implements RequestHandler<InputObject, OutputObject> {
   @Override
   public OutputObject handleRequest(InputObject input, Context context) {
     LOGGER.fine("FINE");
-    LOGGER.info("INFO");
+    LOGGER.info("service is: " + service);
     LOGGER.warning("WARN");
-    LOGGER.severe("SEV " + service);
+    LOGGER.severe("SEV");
     return service.process(input).setRequestId(context.getAwsRequestId());
   }
 }
